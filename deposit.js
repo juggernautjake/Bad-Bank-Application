@@ -24,11 +24,10 @@ function Deposit() {
 
 
     function makeDeposit(amount) {
-        if (validateDeposit(amount)){
-            setAmount('');
-        } else {
-            setAmount('');
-        }
+        console.log(ctx.users[1].balance);
+        ctx.users[1].balance += amount;
+        console.log(ctx.users[1].balance);
+        return ctx.users[1].balance;
     }
 
     function displayBalance(amount) {
@@ -44,7 +43,7 @@ function Deposit() {
             status={status}
             body={(
                 <>
-                Balance:&emsp; &emsp; &emsp; ${ctx.users.balance}<br/><br/>
+                Balance:&emsp; &emsp; &emsp; ${ctx.users[1].balance}<br/><br/>
                 Deposit Amount:<br/>
                 <input type="input" className="form-control" id="balance" placeholder="Deposit Amount" value={amount} onChange={e => setAmount(e.currentTarget.value)}/><br/>
                 <button type="submit" className="btn btn-light" onClick={makeDeposit}>Deposit</button>
