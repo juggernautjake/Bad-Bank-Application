@@ -8,8 +8,7 @@ function Deposit() {
     const ctx                       = React.useContext(UserContext);
 
 
-    function validateDeposit(email, password) {
-        //let userAmount = ctx.users.find(h => h.amount === amount)
+    function validateDeposit(amount) {
 
 
         if (amount <= 0) { 
@@ -23,16 +22,13 @@ function Deposit() {
     }
 
 
-    function makeDeposit(amount) {
-        console.log(ctx.users[1].balance);
-        ctx.users[1].balance += amount;
-        console.log(ctx.users[1].balance);
-        return ctx.users[1].balance;
-    }
-
-    function displayBalance(amount) {
-        //let userAmount = ctx.users.find(h => h.amount === amount)
-        return userAmount;
+    function makeDeposit() {
+        var map = {};
+        if (validateDeposit(amount)) {
+            ctx.users[1].balance = parseFloat(ctx.users[1].balance) + parseFloat(amount);
+            setAmount('');
+            return ctx.users[1].balance;
+        }
     }
 
 
@@ -45,7 +41,7 @@ function Deposit() {
                 <>
                 Balance:&emsp; &emsp; &emsp; ${ctx.users[1].balance}<br/><br/>
                 Deposit Amount:<br/>
-                <input type="input" className="form-control" id="balance" placeholder="Deposit Amount" value={amount} onChange={e => setAmount(e.currentTarget.value)}/><br/>
+                <input type="input" className="form-control" id="amount" placeholder="Deposit Amount" value={amount} onChange={e => setAmount(e.currentTarget.value)}/><br/>
                 <button type="submit" className="btn btn-light" onClick={makeDeposit}>Deposit</button>
                 </>
             )}

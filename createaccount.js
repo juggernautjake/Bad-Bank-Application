@@ -4,25 +4,64 @@ function CreateAccount() {
     const [name, setName]           = React.useState('');
     const [email, setEmail]         = React.useState('');
     const [password, setPassword]   = React.useState('');
-    /*const [password2, checkPassword]    = React.useState('');*/
     const ctx                       = React.useContext(UserContext);
 
     function validate(field, label) {
-        if (!field) {
-            setStatus('Error:' + label);
+        console.log(field);
+        var mailFormat =  /\S+@\S+\.\S+/;
+        if (label === "name" && !field) {
+            setStatus('Error: please enter a ' + label);
+            setTimeout(() => setStatus(''), 3000);
+            return false;
+        } else if (label === "email" && !field) {
+            setStatus('Error: please enter an ' + label);
+            setTimeout(() => setStatus(''), 3000);
+            return false;
+        } else if (label === "password" && !field) {
+            setStatus('Error: please enter a ' + label);
+            setTimeout(() => setStatus(''), 3000);
+            return false;
+        } else if (label === 'email' && !field.match(mailFormat)) {
+            alert("Error: invalid email address format");
+            return false;
+        } if(label === 'password' && field.length < 8) {
+            setStatus('Error: password must be at least 8 characters long');
             setTimeout(() => setStatus(''), 3000);
             return false;
         }
+
+        for(let i = 0; i < ctx.users.length; ++i) {
+            if(label === 'email' && ctx.users[i].email === field) {
+                console.log(field + " 1");
+                console.log(ctx.users[i].email + " 1\n");
+                setStatus('Error: email is already being used');
+                setTimeout(() => setStatus(''), 3000);
+                return false;
+            } else if(label === 'password' && ctx.users[i].password === field) {
+                console.log(field + " 1");
+                console.log(ctx.users[i].password + " 1\n");
+                setStatus('Error: password is already being used');
+                setTimeout(() => setStatus(''), 3000);
+                return false;
+            }
+        }
+
+
         return true;
     }
+
+
+    
 
     function handleCreate() {
         console.log(name, email, password);
         if (!validate(name,         'name'))        return;
         if (!validate(email,        'email'))       return;
         if(!validate(password,      'password'))    return;
-        ctx.users.push({name, email, password, balance:100});
-        setShow(false);
+        if (validate(name, 'name') && validate(email, 'email') && validate(password, 'password')){
+            ctx.users.push({name, email, password, balance:100, currentUser: false});
+            setShow(false);
+        }
     }
 
     function clearForm() {
@@ -31,6 +70,8 @@ function CreateAccount() {
         setPassword('');
         setShow(true);
     }
+
+    
 
     return (
         <Card
@@ -57,6 +98,7 @@ function CreateAccount() {
             )}
         />
     )
+
 
 
 }

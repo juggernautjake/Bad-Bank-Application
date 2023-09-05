@@ -12,8 +12,6 @@ function Login() {
         let userEmail = ctx.users.find(g => g.email === email);
         let userPassword = ctx.users.find(h => h.password === password);
         let currentUser = [''];
-        
-        console.log(ctx.users);
 
         for(let i = 0; i < ctx.users.length; i++) {
             if(ctx.users[i].email === email) {
@@ -57,8 +55,9 @@ function Login() {
     }
 
 
-    function goHome() {
+    function handleLogin() {
         if (validateLogin(email, password)){
+            
             window.location.href = "#";
         }
 
@@ -68,7 +67,8 @@ function Login() {
     return (
         <Card
             bgcolor="warning"
-            header="Create Account"
+            position="absolute"
+            header="Login"
             status={status}
             body={(
                 <>
@@ -76,7 +76,7 @@ function Login() {
                 <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
                 New password:<br/>
                 <input type="input" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
-                <button type="submit" className="btn btn-light" onClick={goHome}>Login</button>
+                <button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>
                 </>
             )}
         />
