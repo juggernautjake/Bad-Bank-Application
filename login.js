@@ -69,31 +69,31 @@ function Login() {
         }
 
         if (!email && !password) { 
-            setStatus('Error: No email or password given');
+            setStatus('Error: no email or password given');
             setTimeout(() => setStatus(''), 3000);
             return false;
         } else if (!email) {
-            setStatus('Error: No email given');
+            setStatus('Error: no email given');
             setTimeout(() => setStatus(''), 3000);
             return false; 
         } else if (!password) {
-            setStatus('Error: No password given');
+            setStatus('Error: no password given');
             setTimeout(() => setStatus(''), 3000);
             return false; 
         } else if (userEmail === undefined && userPassword === undefined) {
-            setStatus('Error: Ivalid email and password');
+            setStatus('Error: invalid email and password');
             setTimeout(() => setStatus(''), 3000);
             return false; 
         } else if (userEmail === undefined){
-            setStatus('Error: Ivalid email');
+            setStatus('Error: innvalid email');
             setTimeout(() => setStatus(''), 3000);
             return false;
         } else if (userPassword === undefined) {
-            setStatus('Error: Ivalid password');
+            setStatus('Error: invalid password');
             setTimeout(() => setStatus(''), 3000);
             return false; 
         } else if (userEmail.password !== userPassword.password) {
-            setStatus('Error: Ivalid password');
+            setStatus('Error: invalid password');
             setTimeout(() => setStatus(''), 3000);
             return false;
         }

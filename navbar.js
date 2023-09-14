@@ -56,13 +56,6 @@ function NavBar(){
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link navbar-text" href='#/balance/'>
-                <button className="btn-success btn shadow-none navbar-text balance" id='balance' data-toggle="tooltip" data-placement="top" title="Click this link to go to the online bank's balance page! From there you can check your account's balance">
-                  Balance
-                </button>
-              </a>
-            </li>
-            <li className="nav-item">
               <a className="nav-link navbar-text" href='#/alldata/'>
                 <button className="btn-success btn shadow-none navbar-text alldata" id='alldata' data-toggle="tooltip" data-placement="top" title="Click this link to go to the online bank's data page! From there you can check out the data for all of the online bank's users">
                   AllData
